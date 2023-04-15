@@ -1,12 +1,12 @@
-import { SlashCommandBuilder } from 'discord.js'
+import { Interaction, SlashCommandBuilder } from 'discord.js'
 import { Command } from '../../types'
 
 const command: Command = {
   data: new SlashCommandBuilder()
-    .setName('pong')
+    .setName('ping')
     .setDescription('send pong to user'),
-  async execute () {
-    console.log('hola')
+  async execute (interaction: Interaction) {
+    console.log(interaction)
   }
 }
 
