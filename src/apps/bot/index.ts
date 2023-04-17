@@ -10,15 +10,15 @@ const client = new Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildInvites
+    GatewayIntentBits.GuildInvites,
+    GatewayIntentBits.MessageContent
   ]
 })
 
-const commands = new Collection<string, Command>()
+export const commands = new Collection<string, Command>()
 
 Promise.all([loadCommands(commands), loadEvents(client)])
   .then(() => {
     client.login(config.bot.token)
-      .then(() => console.log('Login Successfuly'))
   })
 
