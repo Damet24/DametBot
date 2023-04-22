@@ -1,13 +1,10 @@
-import { Interaction, SlashCommandBuilder } from 'discord.js'
-import { Command } from '../../types'
+import { type ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js'
 
-const command: Command = {
+export default {
   data: new SlashCommandBuilder()
     .setName('ping')
     .setDescription('send pong to user'),
-  async execute (interaction: Interaction) {
-    console.log(interaction)
+  async execute (interaction: ChatInputCommandInteraction) {
+    await interaction.reply('Pong!')
   }
 }
-
-export default command
