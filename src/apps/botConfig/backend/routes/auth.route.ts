@@ -7,7 +7,6 @@ export const register = async (app: Express): Promise<void> => {
     'Apps.backend.contollers.SessionPostController'
   )
 
-  console.log(sessionPostController)
   // eslint-disable-next-line
   app.post('/session', sessionPostController.run.bind(sessionPostController))
 }
