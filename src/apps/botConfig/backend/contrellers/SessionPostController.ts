@@ -13,7 +13,7 @@ export class SessionPostController implements IController {
 
   async run (req: Request<CreateSessionRequest>, res: Response): Promise<void> {
     await this.createSession(req)
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send()
+    res.status(httpStatus.CREATED).send()
   }
 
   private async createSession (req: Request<CreateSessionRequest>): Promise<void> {
