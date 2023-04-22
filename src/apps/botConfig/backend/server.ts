@@ -5,15 +5,19 @@ import helmet from 'helmet'
 import type Logger from '../../../Contexts/Shared/domain/Logger'
 import container from './dependency-injection'
 import { registerRoutes } from './routes'
+import { type HttpError } from '../../../Contexts/Shared/domain/HttpError'
+import { type IResponses } from '../../../Contexts/Shared/domain/IResponses'
 
 export class Server {
   private readonly express: express.Express
   port: string
   private readonly logger: Logger
+  private readonly response: IResponses
 
   constructor (port: string) {
     this.port = port
     this.logger = container.get('Shared.Logger')
+    this.response = container.get('Shared.Responses')
     this.express = express()
     this.express.use(express.json())
     this.express.use(express.urlencoded({ extended: true }))
@@ -27,9 +31,10 @@ export class Server {
     this.express.use(router)
     registerRoutes(router)
 
-    router.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
+    router.use((error: HttpError, _req: Request, res: Response, _next: NextFunction) => {
       this.logger.error(error)
-      res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error.message)
+      res.status(httpStatus.INTERNAL_SERVER_ERROR)
+        .json(this.response.errorWithoutBody(error.statusCode, error.message))
     })
   }
 
