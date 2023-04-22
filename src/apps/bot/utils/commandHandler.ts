@@ -1,12 +1,12 @@
-import { Collection } from 'discord.js'
+import { type Collection } from 'discord.js'
 import fs from 'node:fs'
 import path from 'node:path'
-import { Command } from '../types'
+import { type Command } from '../types'
 
 const foldersPath = path.join(__dirname, '../commands')
 const commandFolders = fs.readdirSync(foldersPath)
 
-export async function loadCommands(collection: Collection<string, Command>) {
+export async function loadCommands (collection: Collection<string, Command>): Promise<void> {
   for (const folder of commandFolders) {
     const commandsPath = path.join(foldersPath, folder)
     const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.ts'))

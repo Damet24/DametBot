@@ -2,7 +2,7 @@ import { Client, Collection, GatewayIntentBits } from 'discord.js'
 import config from '../../../config'
 import { loadCommands } from './utils/commandHandler'
 import { loadEvents } from './utils/eventHandler'
-import { Command } from './types'
+import { type Command } from './types'
 
 const client = new Client({
   intents: [
@@ -18,7 +18,7 @@ const client = new Client({
 export const commands = new Collection<string, Command>()
 
 Promise.all([loadCommands(commands), loadEvents(client)])
-  .then(() => {
-    client.login(config.bot.token)
+  .then(async () => {
+    await client.login(config.bot.token)
   })
-
+  .catch(console.error)

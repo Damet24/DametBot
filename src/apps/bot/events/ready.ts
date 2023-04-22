@@ -1,11 +1,11 @@
-import { Events } from "discord.js"
-import { Event } from "../types"
+import { Events } from 'discord.js'
+import { type Event } from '../types'
 
 const event: Event = {
   name: Events.ClientReady,
   once: true,
-  execute(client: any) {
-    console.log(client)
+  execute (_client: any) {
+    console.log('ready')
   }
 }
 
