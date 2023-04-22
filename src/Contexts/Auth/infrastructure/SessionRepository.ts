@@ -1,6 +1,6 @@
 import { type ISessionRepository } from '../domain/ISessionRepository'
 import { Session } from '../domain/Session'
-import { type Pool } from 'mysql'
+import { type Pool } from 'mysql2'
 
 export class SessionRepository implements ISessionRepository {
   constructor (private readonly pool: Pool) { }

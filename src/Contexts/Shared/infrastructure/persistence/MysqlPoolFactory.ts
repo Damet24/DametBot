@@ -1,8 +1,8 @@
-import mysql, { type Pool, type PoolConfig } from 'mysql'
+import mysql, { type PoolOptions, type Pool } from 'mysql2'
 
 export class MysqlPoolFactory {
   static create (): Pool {
-    const config: PoolConfig = {
+    const config: PoolOptions = {
       host: 'localhost',
       user: 'root',
       password: 'rootpass',
