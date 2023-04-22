@@ -3,6 +3,8 @@ import { SessionRepository } from '../../../../../Contexts/Auth/infrastructure/S
 import { SessionCreateUseCase } from '../../../../../Contexts/Auth/application/SessionCreateUseCase'
 import { UserRepository } from '../../../../../Contexts/Auth/infrastructure/UserRepository'
 import { UserCreateUseCase } from '../../../../../Contexts/Auth/application/UserCreateUseCase'
+import { AuthService } from '../../../../../Contexts/Auth/services/AuthServiec'
+import config from '../../../../../../config'
 
 export function loadAuthDependencies (container: ContainerBuilder): void {
   // Session
@@ -18,4 +20,8 @@ export function loadAuthDependencies (container: ContainerBuilder): void {
 
   container.register('Auth.User.application.UserCreateUseCase', UserCreateUseCase)
     .addArgument(new Reference('Auth.User.domain.UserRepository'))
+
+  // Service
+  container.register('Auth.services.AuthService', AuthService)
+    .addArgument(config)
 }
