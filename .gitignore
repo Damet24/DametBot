@@ -13,3 +13,5 @@ dist/
 .env.test
 .env.test.local
 
+my_db/
+cacce/
