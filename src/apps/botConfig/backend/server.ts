@@ -3,7 +3,8 @@ import cors from 'cors'
 import httpStatus from 'http-status'
 import helmet from 'helmet'
 import type Logger from '../../../Contexts/Shared/domain/Logger'
-import { container } from './dependency-injection'
+import container from './dependency-injection'
+import { registerRoutes } from './routes'
 
 export class Server {
   private readonly express: express.Express
@@ -24,6 +25,7 @@ export class Server {
 
     const router = express.Router()
     this.express.use(router)
+    registerRoutes(router)
 
     router.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
       this.logger.error(error)
