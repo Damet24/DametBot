@@ -1,0 +1,28 @@
+version: '3.3'
+services:
+  inventory_db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'inventory_db'
+      MYSQL_USER: 'daniel'
+      MYSQL_PASSWORD: 'danielpass'
+      MYSQL_ROOT_PASSWORD: 'rootpass'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./my_db:/var/lib/mysql
+  inventory_cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes: 
+      - ./cache:/data
+volumes:
+  cache:
+    driver: local
+  my-db:
