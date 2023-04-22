@@ -10,5 +10,9 @@
     "noImplicitAny": true,
     "noImplicitReturns": false,
     "skipLibCheck": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "src/apps/botConfig/frontend"
+  ]
 }
