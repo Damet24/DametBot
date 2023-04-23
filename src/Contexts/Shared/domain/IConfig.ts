@@ -9,6 +9,6 @@ export interface IConfig {
   }
   api: {
     port: string
-    hashSalt: string
+    hashSalt: number
   }
 }

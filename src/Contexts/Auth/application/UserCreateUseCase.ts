@@ -1,11 +1,11 @@
 import { type IUseCase } from '../../Shared/domain/IUseCase'
+import { type IAuthService } from '../domain/IAuthService'
 import { type IUserRepasitory } from '../domain/IUserRepository'
-import { type AuthService } from '../services/AuthServiec'
 
 export class UserCreateUseCase implements IUseCase<{ username: string, email: string, password: string }, { accessToken: string }> {
   constructor (
     private readonly repository: IUserRepasitory,
-    private readonly authService: AuthService) { }
+    private readonly authService: IAuthService) { }
 
   async run (params: { username: string, email: string, password: string }): Promise<{ accessToken: string }> {
     const data = {

@@ -1,7 +1,7 @@
 import { type NextFunction, type Request, type Response } from 'express'
-import { type IController } from './IController'
+import { type IController } from '../IController'
 import httpStatus from 'http-status'
-import { type IUseCase } from '../../../../Contexts/Shared/domain/IUseCase'
+import { type IUseCase } from '../../../../../Contexts/Shared/domain/IUseCase'
 
 interface CreateSessionRequest {
   userId: string
