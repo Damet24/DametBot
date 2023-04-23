@@ -18,8 +18,10 @@ export function loadAuthDependencies (container: ContainerBuilder): void {
   container.register('Auth.User.domain.UserRepository', UserRepository)
     .addArgument(new Reference('Shared.domain.MysqlPoolFactory'))
 
-  container.register('Auth.User.application.UserCreateUseCase', UserCreateUseCase)
-    .addArgument(new Reference('Auth.User.domain.UserRepository'))
+  container.register('Auth.User.application.UserCreateUseCase', UserCreateUseCase, [
+    new Reference('Auth.User.domain.UserRepository'),
+    new Reference('Auth.services.AuthService')
+  ])
 
   // Service
   container.register('Auth.services.AuthService', AuthService)

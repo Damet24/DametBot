@@ -8,6 +8,7 @@ import { Responses } from '../../../../../Contexts/Shared/infrastructure/Respons
 export function loadSharedDependencies (container: ContainerBuilder): void {
   container.register('Shared.Logger', WinstonLogger)
   container.register('Shared.Responses', Responses)
+
   registerFactory(PostgresPoolFactory, 'create', 'Shared.domain.PostgresPoolFactory')
   registerFactory(MysqlPoolFactory, 'create', 'Shared.domain.MysqlPoolFactory')
 }

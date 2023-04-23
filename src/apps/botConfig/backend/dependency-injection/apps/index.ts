@@ -8,6 +8,8 @@ export function loadAppsDependencies (container: ContainerBuilder): void {
     .addArgument(new Reference('Auth.Session.application.SessionCreateUseCase'))
 
   // User
-  container.register('Apps.backend.controllers.UserPostController', UserPostController)
-    .addArgument(new Reference('Auth.User.application.UserCreateUseCase'))
+  container.register('Apps.backend.controllers.UserPostController', UserPostController, [
+    new Reference('Auth.User.application.UserCreateUseCase'),
+    new Reference('Shared.Responses')
+  ])
 }
