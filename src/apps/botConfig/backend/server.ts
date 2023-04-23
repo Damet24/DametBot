@@ -33,8 +33,14 @@ export class Server {
 
     router.use((error: HttpError, _req: Request, res: Response, _next: NextFunction) => {
       this.logger.error(error)
+      const messageError = error.message ?? httpStatus[500]
       res.status(httpStatus.INTERNAL_SERVER_ERROR)
-        .json(this.response.errorWithoutBody(error.statusCode, `${httpStatus[500]}: ${error.message}`))
+        .json(this.response.errorWithoutBody(error.statusCode, messageError))
+    })
+
+    router.use((_req: Request, res: Response, _next: NextFunction) => {
+      res.status(httpStatus.NOT_FOUND)
+        .json(this.response.errorWithoutBody(httpStatus.NOT_FOUND, httpStatus[404]))
     })
   }
 
