@@ -7,6 +7,7 @@ import { AuthService } from '../../../../../Contexts/Auth/services/AuthServiec'
 import config from '../../../../../../config'
 import { AuthMiddelware } from '../../../../../Contexts/Auth/infrastructure/middelwares/AuthMiddelware'
 import { UserLoginUseCase } from '../../../../../Contexts/Auth/application/UserLoginUseCase'
+import { UserGetUseCase } from '../../../../../Contexts/Auth/application/UserGetUseCase'
 
 export function loadAuthDependencies (container: ContainerBuilder): void {
   // Session
@@ -21,6 +22,11 @@ export function loadAuthDependencies (container: ContainerBuilder): void {
     .addArgument(new Reference('Shared.domain.MysqlPoolFactory'))
 
   container.register('Auth.User.application.UserCreateUseCase', UserCreateUseCase, [
+    new Reference('Auth.User.domain.UserRepository'),
+    new Reference('Auth.services.AuthService')
+  ])
+
+  container.register('Auth.User.application.UserGetUseCase', UserGetUseCase, [
     new Reference('Auth.User.domain.UserRepository'),
     new Reference('Auth.services.AuthService')
   ])
