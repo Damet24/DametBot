@@ -14,4 +14,4 @@ dist/
 .env.test.local
 
 my_db/
-cacce/
+cache/
