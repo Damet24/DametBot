@@ -34,7 +34,8 @@ const config: IConfig = {
     secret: envVars.JWT_SECRET_KEY
   },
   api: {
-    port: envVars.API_PORT
+    port: envVars.API_PORT,
+    hashSalt: 10
   }
 }
 
