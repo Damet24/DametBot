@@ -1,9 +1,8 @@
-import { type HttpStatusClasses } from 'http-status'
 
 export class HttpError extends Error {
-  statusCode: HttpStatusClasses
+  statusCode: number
 
-  constructor (statusCode: HttpStatusClasses, msg: string) {
+  constructor (statusCode: number, msg: string) {
     super(msg)
     this.statusCode = statusCode
   }
