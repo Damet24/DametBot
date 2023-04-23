@@ -34,7 +34,7 @@ export class Server {
     router.use((error: HttpError, _req: Request, res: Response, _next: NextFunction) => {
       this.logger.error(error)
       res.status(httpStatus.INTERNAL_SERVER_ERROR)
-        .json(this.response.errorWithoutBody(error.statusCode, httpStatus[500]))
+        .json(this.response.errorWithoutBody(error.statusCode, `${httpStatus[500]}: ${error.message}`))
     })
   }
 
