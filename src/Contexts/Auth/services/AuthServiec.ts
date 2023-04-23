@@ -1,6 +1,7 @@
 import { type IConfig } from '../../Shared/domain/IConfig'
 import { User } from '../domain/User'
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
 export class AuthService {
   constructor (private readonly config: IConfig) { }
@@ -12,8 +13,12 @@ export class AuthService {
     return new User(null, '', '', '')
   }
 
-  async generateAccessToken (data: any): Promise<{ accessToken: string }> {
+  generateAccessToken (data: any): { accessToken: string } {
     const accessToken = jwt.sign(data, this.config.jwt.secret)
     return { accessToken }
+  }
+
+  encodePassword (password: string): string {
+    return bcrypt.hashSync(password, this.config.api.hashSalt)
   }
 }
