@@ -35,7 +35,7 @@ const config: IConfig = {
   },
   api: {
     port: envVars.API_PORT,
-    hashSalt: 10
+    hashSalt: '10'
   }
 }
 
