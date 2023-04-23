@@ -1,7 +1,6 @@
-import type httpStatus from 'http-status'
 
 export interface IResponse {
   error: string | null
-  status: httpStatus.HttpStatusClasses
+  status: number
   body: any
 }

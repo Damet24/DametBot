@@ -1,17 +1,16 @@
-import { type HttpStatusClasses } from 'http-status'
 import { type IResponse } from '../domain/IResponse'
 import { type IResponses } from '../domain/IResponses'
 
 export class Responses implements IResponses {
-  successWithBody (status: HttpStatusClasses, msg: string, body: any): IResponse {
+  successWithBody (status: number, msg: string, body: any): IResponse {
     return {
       error: null,
-      body: { msg, body },
+      body: { msg, ...body },
       status
     }
   }
 
-  successWithoutBody (status: HttpStatusClasses): IResponse {
+  successWithoutBody (status: number): IResponse {
     return {
       error: null,
       body: null,
@@ -19,7 +18,7 @@ export class Responses implements IResponses {
     }
   }
 
-  errorWithBody (status: HttpStatusClasses, msg: string, body: any): IResponse {
+  errorWithBody (status: number, msg: string, body: any): IResponse {
     return {
       error: msg,
       body,
@@ -27,7 +26,7 @@ export class Responses implements IResponses {
     }
   }
 
-  errorWithoutBody (status: HttpStatusClasses, msg: string): IResponse {
+  errorWithoutBody (status: number, msg: string): IResponse {
     return {
       error: msg,
       body: null,
