@@ -3,15 +3,16 @@ import { User } from '../domain/User'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import { type IUserRepasitory } from '../domain/IUserRepository'
+import { type IAuthService } from '../domain/IAuthService'
 
-export class AuthService {
+export class AuthService implements IAuthService {
   constructor (
     private readonly userRepository: IUserRepasitory,
     private readonly config: IConfig
   ) { }
 
-  async authenticate (username: string, password: string): Promise<string> {
-    return ''
+  async authenticate (password: string, passwordHash: string): Promise<boolean> {
+    return bcrypt.compareSync(password, passwordHash)
   }
 
   async validate (token: string): Promise<User | undefined> {

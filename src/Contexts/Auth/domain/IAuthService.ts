@@ -1,7 +1,7 @@
 import { type User } from './User'
 
 export interface IAuthService {
-  authenticate: (username: string, password: string) => Promise<string>
+  authenticate: (password: string, passwordHash: string) => Promise<boolean>
 
   validate: (token: string) => Promise<User | undefined>
 
