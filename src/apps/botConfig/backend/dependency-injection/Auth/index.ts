@@ -33,6 +33,7 @@ export function loadAuthDependencies (container: ContainerBuilder): void {
 
   container.register('Auth.User.application.UserLoginUseCase', UserLoginUseCase, [
     new Reference('Auth.User.domain.UserRepository'),
+    new Reference('Auth.Session.domain.SessionRepository'),
     new Reference('Auth.services.AuthService')
   ])
 
