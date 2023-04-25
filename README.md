@@ -1,4 +1,4 @@
-# DamotBot
+# DiscordBot
 
 An example of a general purpose discord bot
 
